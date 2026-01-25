@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>OOTDmu</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="header">
+  <input type="number" id="searchInput" placeholder="Cari nomor link...">
+  <button onclick="searchProduct()">Cari</button>
+</div>
+
+<div class="range">
+  <button onclick="showAll(this)">Semua</button>
+  <button onclick="filterRange(2401,2450, this)">2401 - 2450</button>
+  <button onclick="filterRange(2451,2500, this)">2451 - 2500</button>
+</div>
+
+<div class="grid" id="productList"></div>
+
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
