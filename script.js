@@ -1,16 +1,4 @@
 const list = document.getElementById("productList");
-let products = [];
-
-fetch("https://opensheet.elk.sh/1yQdAB3Ild2jH86P_0YMbD0pdsqqCmFMcniEfXUD77gY/Sheet1")
-  .then(res => res.json())
-  .then(data => {
-    products = data.map(item => ({
-      code: Number(item.code),
-      image: item.image,
-      link: item.link
-    }));
-    render(products);
-  });
 
 function render(data) {
   list.innerHTML = "";
@@ -31,16 +19,18 @@ function searchProduct() {
   render(result);
 }
 
+
+// tampilkan semua produk saat halaman dibuka
+render(products);
+
 function filterRange(min, max, btn) {
   resetActive();
   btn.classList.add("active");
-  render(products.filter(p => p.code >= min && p.code <= max));
-}
 
-function showAll(btn) {
-  resetActive();
-  btn.classList.add("active");
-  render(products);
+  const result = products.filter(
+    p => p.code >= min && p.code <= max
+  );
+  render(result);
 }
 
 function resetActive() {
@@ -49,10 +39,19 @@ function resetActive() {
     .forEach(btn => btn.classList.remove("active"));
 }
 
+function showAll(btn) {
+  resetActive();
+  btn.classList.add("active");
+  render(products);
+}
+
 document
   .getElementById("searchInput")
-  .addEventListener("keyup", e => {
-    if (e.key === "Enter") searchProduct();
+  .addEventListener("keyup", function(e) {
+    if (e.key === "Enter") {
+      searchProduct();
+    }
   });
+
 
 
